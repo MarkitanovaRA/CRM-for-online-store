@@ -1,0 +1,1 @@
+C:\Users\Руслана\source\repos\TPCR\piris.DomainService\obj\Debug\piris.DomainService.csproj.AssemblyReference.cache

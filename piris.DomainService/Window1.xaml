@@ -1,0 +1,52 @@
+﻿<Window x:Class="piris.DomainService.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TPCR"
+        mc:Ignorable="d"
+        Title="Window1" Height="500" Width="850">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="PositionTypeValues" MethodName="GetValues" ObjectType="{x:Type local:PositionType}"/>
+    </Window.Resources>
+    <Grid Margin="0,10,-37,0">
+        <Label x:Name="lUser" Content="Label" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Height="46" Width="340" FontSize="24"/>
+        <DataGrid x:Name="dgMain" HorizontalAlignment="Left" Height="263" Margin="16,173,0,0" VerticalAlignment="Top" Width="642" SelectionChanged="dgMain_SelectionChanged">
+            <DataGrid.Columns>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Котировки" HorizontalAlignment="Left" Margin="677,212,0,0" VerticalAlignment="Top" Height="37" Width="136" FontSize="18"/>
+        <Button x:Name="bQuotes" Content="Получить котировки" HorizontalAlignment="Left" Height="39" Margin="677,173,0,0" VerticalAlignment="Top" Width="136" Click="bQuotes_Click" Background="#FF1B1B1B" Foreground="White"/>
+        <Button x:Name="bAnalys" Content="Провести анализ" HorizontalAlignment="Left" Height="38" Margin="677,119,0,0" VerticalAlignment="Top" Width="136" Background="#FF1B1B1B" Foreground="White"/>
+        <Button x:Name="bMarkup" Content="Установить наценку" HorizontalAlignment="Left" Margin="498,119,0,0" VerticalAlignment="Top" Height="38" Width="118" Background="#FF1B1B1B" Foreground="White" Click="bMarkup_Click" />
+        <Button x:Name="bAdd" Content="Добавить информацию" HorizontalAlignment="Left" Margin="677,64,0,0" VerticalAlignment="Top" Height="40" Width="136" Click="bAdd_Click" Foreground="White" Background="#FF1B1B1B" />
+        <Button x:Name="bUpdate" Content="Обновить БД" HorizontalAlignment="Left" Margin="16,121,0,0" VerticalAlignment="Top" Height="38" Width="136" Foreground="White" Background="#FF1B1B1B" Click="bUpdate_Click" />
+        <TextBox x:Name="tbPosName" HorizontalAlignment="Left" Height="22" Margin="16,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136"/>
+        <ComboBox x:Name="cbPosType" HorizontalAlignment="Left" Margin="180,82,0,0" VerticalAlignment="Top" Width="136" Height="22" SelectionChanged="cbPosType_SelectionChanged" ItemsSource="{Binding Source={StaticResource PositionTypeValues}}">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#FFF0F0F0"/>
+                    <GradientStop Color="#FF1B1B1B" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+            <ComboBoxItem Tag="1">Верхняя одежда</ComboBoxItem>
+            <ComboBoxItem Tag="2">Низ</ComboBoxItem>
+            <ComboBoxItem Tag="3">Майки</ComboBoxItem>
+            <ComboBoxItem Tag="4">Шапки</ComboBoxItem>
+        </ComboBox>
+        <TextBox x:Name="tbPosValue" HorizontalAlignment="Left" Margin="349,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="119" Height="22"/>
+        <TextBox x:Name="tbPosPrice" HorizontalAlignment="Left" Margin="498,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="118" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="16,61,0,0" TextWrapping="Wrap" Text="Название товара" VerticalAlignment="Top" Width="136"/>
+        <TextBlock HorizontalAlignment="Left" Margin="180,59,0,0" TextWrapping="Wrap" Text="Тип товара" VerticalAlignment="Top" Width="136"/>
+        <TextBlock HorizontalAlignment="Left" Margin="349,61,0,0" TextWrapping="Wrap" Text="Количество товара" VerticalAlignment="Top" Width="136"/>
+        <TextBlock HorizontalAlignment="Left" Margin="498,61,0,0" TextWrapping="Wrap" Text="Цена за товар" VerticalAlignment="Top" Width="136"/>
+        <Border HorizontalAlignment="Left" Height="188" Margin="677,248,0,0" VerticalAlignment="Top" Width="136">
+            <ListBox x:Name="lbQuotes" RenderTransformOrigin="0.25,0.484" SelectionChanged="lbQuotes_SelectionChanged"/>
+        </Border>
+        <Button x:Name="bDelete" Content="Удалить товар" HorizontalAlignment="Left" Margin="189,119,0,0" VerticalAlignment="Top" Height="38" Width="118" Background="#FF1B1B1B" Foreground="White" IsEnabled="False" Click="bDelete_Click" BorderBrush="Black"/>
+        <Button x:Name="bExit" Content="Выйти из профиля" HorizontalAlignment="Left" Margin="677,11,0,0" VerticalAlignment="Top" Height="40" Width="136" Click="bExit_Click" Foreground="White" Background="#FF1B1B1B" />
+        <Slider x:Name="slider" Minimum="0" Maximum="100" Value="0" TickFrequency="10" IsSnapToTickEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="136" Height="30" Margin="340,119,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Margin="340,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"><Run Language="ru-ru" Text="0"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="455,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"><Run Language="ru-ru" Text="100"/><LineBreak/><Run Language="ru-ru"/></TextBlock>
+    </Grid>
+</Window>

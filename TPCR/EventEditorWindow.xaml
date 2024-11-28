@@ -1,0 +1,32 @@
+﻿<Window x:Class="TPCR.EventEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактирование события" Height="300" Width="400">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Поля для редактирования события -->
+        <Label Content="Название события:" Grid.Row="0" Margin="5"/>
+        <TextBox x:Name="tbEventName" Grid.Row="0" Margin="120,5,5,5"/>
+
+        <Label Content="Дата события:" Grid.Row="1" Margin="5"/>
+        <DatePicker x:Name="dpEventDate" Grid.Row="1" Margin="120,5,5,5"/>
+
+        <Label Content="Время события:" Grid.Row="2" Margin="5"/>
+        <TextBox x:Name="tbEventTime" Grid.Row="2" Margin="120,5,5,5"/>
+
+        <Label Content="Создано пользователем:" Grid.Row="3" Margin="5"/>
+        <TextBox x:Name="tbCreatedBy" Grid.Row="3" Margin="158,5,5,5"/>
+
+        <!-- Панель управления -->
+        <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Right" Margin="10"/>
+        <Button Content="Сохранить" Margin="13,85,299,10" Click="bSaveEvent_Click" Grid.Row="4" Foreground="White" Background="Black"/>
+        <Button Content="Отмена" Click="bCancel_Click" Margin="303,84,17,10" Grid.Row="4" Foreground="White" Background="Black"/>
+    </Grid>
+</Window>

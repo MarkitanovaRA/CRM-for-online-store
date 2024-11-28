@@ -1,0 +1,87 @@
+﻿<Window x:Class="TPCR.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CRM System" Height="692" Width="928" Loaded="Window_loaded">
+    <Window.Resources>
+        <Style x:Key="WatermarkTextBox" TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Text" Value="">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <VisualBrush AlignmentX="Left" AlignmentY="Center" Stretch="None" Opacity="0.5">
+                                <VisualBrush.Visual>
+                                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=Tag}" Foreground="Gray"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="Text" Value="{x:Null}">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <VisualBrush AlignmentX="Left" AlignmentY="Center" Stretch="None" Opacity="0.5">
+                                <VisualBrush.Visual>
+                                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=Tag}" Foreground="Gray"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,20,28,17">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="529*"/>
+            <ColumnDefinition Width="271*"/>
+        </Grid.ColumnDefinitions>
+        <!-- Продукты -->
+        <DataGrid x:Name="dgMain" HorizontalAlignment="Left" Height="190" Margin="10,20,0,0" VerticalAlignment="Top" Width="735" AutoGenerateColumns="True" SelectionChanged="dgMain_SelectionChanged" Grid.ColumnSpan="2"/>
+        <Button Content="События" Click="bEvents_Click" Margin="171,0,2,524" Height="38" VerticalAlignment="Bottom" Grid.Column="1" Background="Black" Foreground="White"/>
+        <!-- Клиенты -->
+        <Label Content="Котировки" HorizontalAlignment="Left" Margin="171,173,0,0" VerticalAlignment="Top" Height="37" Width="136" FontSize="18" Grid.Column="1"/>
+        <Button x:Name="bQuotes" Content="Получить котировки" Height="39" Margin="171,129,0,0" VerticalAlignment="Top" Click="bQuotes_Click" Background="Black" Foreground="White" Grid.Column="1" HorizontalAlignment="Left" Width="132" RenderTransformOrigin="0.507,0.334"/>
+        <DataGrid x:Name="dgCustomers" HorizontalAlignment="Left" Margin="10,220,0,232" Width="735" AutoGenerateColumns="True" Grid.ColumnSpan="2"/>
+        <Label Content="Имя клиента:" HorizontalAlignment="Left" Margin="10,450,0,0" VerticalAlignment="Top" Height="26" Width="83"/>
+        <TextBox x:Name="tbCustomerName" Style="{StaticResource WatermarkTextBox}" Tag="Имя клиента" HorizontalAlignment="Left" Height="23" Margin="10,474,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Email клиента:" HorizontalAlignment="Left" Margin="144,450,0,0" VerticalAlignment="Top" Height="26" Width="88"/>
+        <TextBox x:Name="tbCustomerEmail" Style="{StaticResource WatermarkTextBox}" Tag="Email клиента" HorizontalAlignment="Left" Height="23" Margin="144,474,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Телефон клиента:" HorizontalAlignment="Left" Margin="269,450,0,0" VerticalAlignment="Top" Height="26" Width="107"/>
+        <TextBox x:Name="tbCustomerPhone" Style="{StaticResource WatermarkTextBox}" Tag="Телефон клиента" HorizontalAlignment="Left" Height="23" Margin="270,474,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Адрес клиента:" HorizontalAlignment="Left" Margin="400,450,0,0" VerticalAlignment="Top" Height="26" Width="93"/>
+        <TextBox x:Name="tbCustomerAddress" Style="{StaticResource WatermarkTextBox}" Tag="Адрес клиента" HorizontalAlignment="Left" Height="23" Margin="400,474,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Добавить клиента" HorizontalAlignment="Left" Margin="163,429,0,0" VerticalAlignment="Top" Width="140" Click="bAddCustomer_Click" Height="39" Grid.Column="1" Background="#FF0E0000" Foreground="White"/>
+        <Button Content="Удалить клиента" HorizontalAlignment="Left" Margin="163,382,0,0" VerticalAlignment="Top" Width="140" Click="bDeleteCustomer_Click" Grid.Column="1" Height="42" Background="Black" Foreground="White" RenderTransformOrigin="0.513,-0.07"/>
+
+
+        <Border HorizontalAlignment="Left" Height="190" Margin="171,192,0,0" VerticalAlignment="Top" Width="134" Grid.Column="1">
+            <ListBox x:Name="lbQuotes" RenderTransformOrigin="0.25,0.484" SelectionChanged="lbQuotes_SelectionChanged" HorizontalAlignment="Center" Width="136" Margin="0,21,0,10"/>
+        </Border>
+
+        <!-- Заказы -->
+        <DataGrid x:Name="dgOrders" HorizontalAlignment="Left" Height="100" Margin="10,529,0,0" VerticalAlignment="Top" Width="329" AutoGenerateColumns="True"/>
+        <Label Content="ID клиента для заказа:" HorizontalAlignment="Left" Margin="530,448,0,0" VerticalAlignment="Top" Height="26" Width="132" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbOrderCustomerID" Style="{StaticResource WatermarkTextBox}" Tag="ID клиента" HorizontalAlignment="Left" Height="23" Margin="536,474,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <Button Content="Добавить заказ" HorizontalAlignment="Left" Margin="163,562,0,0" Width="140" Click="bAddOrder_Click" Height="42" VerticalAlignment="Top" Grid.Column="1" Foreground="White" Background="Black"/>
+
+        <!-- Товары в заказе -->
+        <DataGrid x:Name="dgOrderItems" HorizontalAlignment="Left" Height="100" Margin="354,529,0,0" VerticalAlignment="Top" Width="365" AutoGenerateColumns="True" Grid.ColumnSpan="2"/>
+        <Button Content="Добавить товар в заказ" HorizontalAlignment="Left" Margin="163,518,0,0" Width="140" Click="bAddOrderItem_Click" Height="39" VerticalAlignment="Top" Grid.Column="1" Background="Black" Foreground="White"/>
+        <Button Content="Удалить товар" HorizontalAlignment="Left" Margin="163,473,0,0" Width="140" Click="bDeleteOrderItem_Click" Grid.Column="1" Height="38" VerticalAlignment="Top" RenderTransformOrigin="0.507,0.208" Foreground="White" Background="Black"/>
+
+        <!-- Кнопка выхода -->
+        <Button Content="Выход" HorizontalAlignment="Left" Margin="170,0,0,575" VerticalAlignment="Bottom" Width="132" Click="bExit_Click" Grid.Column="1" RenderTransformOrigin="0.5,0.5" Height="39" Background="#FF080000" Foreground="White">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.394"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+
+        <!-- ComboBox для выбора типа позиции -->
+        <ComboBox x:Name="cbPosType" HorizontalAlignment="Left" Margin="10,502,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
+    </Grid>
+</Window>
